@@ -6,51 +6,50 @@
 }
 
 body {
-    background: radial-gradient(circle, #1a232c, #0a0e12);
+    background: radial-gradient(circle at top, #172330, #090d12);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
-    padding: 20px;
+    padding: 30px 20px;
 }
 
-.card {
+.main-wrapper {
     width: 100%;
-    max-width: 500px;
-    background: #0f151b;
-    border: 1px solid #1e293b;
-    border-radius: 24px;
-    padding: 40px 30px;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 131, 176, 0.05);
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Search Bar */
 .search {
     width: 100%;
+    max-width: 540px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .search input {
-    border: 1.5px solid #1e293a;
+    border: 1.5px solid #1e293b;
     outline: 0;
-    background: #151e27;
+    background: #111822;
     color: #ffffff;
-    padding: 14px 20px;
-    height: 52px;
+    padding: 14px 22px;
+    height: 54px;
     border-radius: 30px;
     flex: 1;
     font-size: 16px;
     transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .search input:focus {
-    border-color: #3b82f6;
-    background: #1c2733;
+    border-color: #38bdf8;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
 }
 
 .search button {
@@ -58,92 +57,155 @@ body {
     outline: 0;
     background: #2563eb;
     color: #fff;
-    font-weight: bold;
+    font-weight: 600;
     border-radius: 30px;
-    padding: 0 24px;
-    height: 52px;
+    padding: 0 28px;
+    height: 54px;
     cursor: pointer;
     font-size: 15px;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease;
 }
 
 .search button:hover {
     background: #3b82f6;
-    box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
 }
 
-.weather {
+/* Error Message */
+.error {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    padding: 12px 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    font-size: 14px;
+    margin-bottom: 20px;
     display: none;
-    margin-top: 15px;
+    text-align: center;
 }
 
-.weather-icon {
-    width: 100px;
-    margin: 10px auto;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+/* Two-Column Dashboard */
+.dashboard {
+    width: 100%;
+    display: none;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 24px;
+    align-items: stretch;
 }
 
-.temp {
-    font-size: 72px;
-    font-weight: 700;
-    color: #3b82f6;
-    letter-spacing: -2px;
+/* Left Weather Card */
+.card {
+    background: #0d131a;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 24px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.08);
+}
+
+.weather-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .city {
-    font-size: 36px;
-    font-weight: 600;
-    margin-top: 5px;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .city::after {
     content: " 📍";
-    font-size: 18px;
+    font-size: 20px;
     vertical-align: middle;
+}
+
+.country {
+    font-size: 14px;
+    color: #64748b;
+    margin-top: 2px;
+    font-weight: 600;
+}
+
+.weather-icon {
+    width: 90px;
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));
+}
+
+.temp-section {
+    margin: 20px 0;
+}
+
+.temp {
+    font-size: 76px;
+    font-weight: 700;
+    color: #38bdf8;
+    line-height: 1;
+    letter-spacing: -2px;
 }
 
 .description {
     text-transform: capitalize;
-    font-size: 17px;
+    font-size: 18px;
     color: #94a3b8;
-    margin-top: 4px;
-    letter-spacing: 0.5px;
+    margin-top: 10px;
 }
 
 .details {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-top: 40px;
-    padding-top: 25px;
+    justify-content: space-between;
+    padding-top: 22px;
     border-top: 1px solid #1e293b;
 }
 
-.details .col {
-    flex: 1;
+.details .label {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 4px;
 }
 
 .humidity, .wind {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
-    color: #38bdf8;
+    color: #e2e8f0;
 }
 
-.details p {
-    font-size: 14px;
-    color: #64748b;
-    margin-top: 4px;
-    font-weight: 500;
+/* Right Map Card */
+.map-card {
+    background: #0d131a;
+    border: 1px solid #1e293b;
+    border-radius: 24px;
+    overflow: hidden;
+    min-height: 360px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+    position: relative;
 }
 
-.error {
-    background: rgba(239, 68, 68, 0.1);
-    color: #f87171;
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(239, 68, 68, 0.2);
-    font-size: 14px;
-    margin-top: 15px;
-    display: none;
-    text-align: center;
+#map {
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+    z-index: 1;
+    background: #0d131a;
+}
+
+/* Dark theme adjustments for Leaflet controls */
+.leaflet-control-attribution {
+    background: rgba(13, 19, 26, 0.75) !important;
+    color: #64748b !important;
+    font-size: 10px;
+}
+
+.leaflet-control-attribution a {
+    color: #38bdf8 !important;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
 }
