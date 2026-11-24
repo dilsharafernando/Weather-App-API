@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" id="city-input" placeholder="Enter city name (e.g., Colombo)" spellcheck="false">
+            <button id="search-btn">Search</button>
+        </div>
+        
+        <div class="error" id="error-msg">
+            <p>Invalid city name. Please try again!</p>
+        </div>
+
+        <div class="weather" id="weather-box">
+            <img src="https://openweathermap.org/img/wn/02d@2x.png" class="weather-icon" id="weather-icon" alt="Weather Icon">
+            <h1 class="temp" id="temp">--°C</h1>
+            <h2 class="city" id="city">City Name</h2>
+            <p class="description" id="description">Clear Sky</p>
+            
+            <div class="details">
+                <div class="col">
+                    <div>
+                        <p class="humidity" id="humidity">--%</p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <p class="wind" id="wind">-- km/h</p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
