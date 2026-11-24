@@ -13,27 +13,34 @@ async function checkWeather(city) {
     try {
         const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
-        if (response.status === 404) {
+        if (!response.ok) {
+            if (response.status === 401) {
+                errorMsg.querySelector("p").innerText = "API Key Not Valid! Please check your API key.";
+            } else {
+                errorMsg.querySelector("p").innerText = "Invalid city name. Please try again!";
+            }
             errorMsg.style.display = "block";
             weatherBox.style.display = "none";
-        } else {
-            const data = await response.json();
-
-            document.getElementById("city").innerHTML = data.name;
-            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
-            document.getElementById("description").innerHTML = data.weather[0].description;
-            document.getElementById("humidity").innerHTML = data.main.humidity + "%";
-            document.getElementById("wind").innerHTML = data.wind.speed + " km/h";
-
-            
-            const iconCode = data.weather[0].icon;
-            weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-
-            weatherBox.style.display = "block";
-            errorMsg.style.display = "none";
+            return;
         }
+
+        const data = await response.json();
+
+        document.getElementById("city").innerHTML = data.name;
+        document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
+        document.getElementById("description").innerHTML = data.weather[0].description;
+        document.getElementById("humidity").innerHTML = data.main.humidity + "%";
+        document.getElementById("wind").innerHTML = data.wind.speed + " km/h";
+
+        const iconCode = data.weather[0].icon;
+        weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+        weatherBox.style.display = "block";
+        errorMsg.style.display = "none";
     } catch (error) {
         console.error("Error fetching weather data:", error);
+        errorMsg.querySelector("p").innerText = "Network error! Internet connection eka check karanna.";
+        errorMsg.style.display = "block";
     }
 }
 
