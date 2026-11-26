@@ -44,7 +44,7 @@ async function checkWeather(city) {
 
         if (!response.ok) {
             if (response.status === 401) {
-                errorMsg.querySelector("p").innerText = "API Key eka thama active wela na (winadi 15k withara inna).";
+                errorMsg.querySelector("p").innerText = "API Key Not Active ";
             } else {
                 errorMsg.querySelector("p").innerText = "Invalid city name. Please try again!";
             }
@@ -80,7 +80,7 @@ async function checkWeather(city) {
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
-        errorMsg.querySelector("p").innerText = "Network error! Internet connection eka check karanna.";
+        errorMsg.querySelector("p").innerText = "Network error!.";
         errorMsg.style.display = "block";
     }
 }
